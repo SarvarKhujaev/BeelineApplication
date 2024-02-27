@@ -1,5 +1,8 @@
-package com.beeline.beelineapplication.constants;
+package com.beeline.beelineapplication.constants.postgres;
 
+/*
+одержит все базовые команды Postgres
+*/
 public final class PostgreCommands {
     /*
     The HAVING clause was added to SQL because the WHERE clause cannot be used with aggregate functions.
@@ -27,7 +30,24 @@ public final class PostgreCommands {
 
     public final static String SELECT = "SELECT * FROM";
 
-    public final static String INSERT = "INSERT INTO %s.%s ( %s ) VALUES ";
+    public final static String INSERT = "INSERT INTO";
+
+    /*
+    https://postgrespro.ru/docs/postgresql/9.6/sql-set-transaction
+
+    https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-transaction/
+     */
+    public final static String BEGIN_TRANSACTION = "BEGIN TRANSACTION";
+
+    public final static String COMMIT_TRANSACTION = "COMMIT TRANSACTION;";
+
+    public final static String SET_TRANSACTION = "SET TRANSACTION;";
+
+    /*
+    Example:
+        BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+     */
+    public final static String ISOLATION_LEVEL = "ISOLATION LEVEL";
 
     /*
     Иногда бывает полезно получать данные из модифицируемых строк в процессе их обработки.

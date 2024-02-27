@@ -1,1 +1,25 @@
+server:
+  port: 8080
+  address: localhost
 
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: killerbee
+
+  liquibase:
+    enabled: true
+    change-log: classpath:changelog/dbchangelog.xml
+
+variables:
+  POSTGRES_VARIABLES:
+    USER: postgres
+    PASSWORD: killerbee
+
+  KAFKA_VARIABLES:
+    KAFKA_BROKER : localhost:9092
+    GROUP_ID_FOR_KAFKA : BEELINE_APPLICATION
+
+    KAFKA_TOPICS:
+      ORDER_STORAGE_TOPIC: ORDER_STORAGE_TOPIC

@@ -1,16 +1,15 @@
 package com.beeline.beelineapplication.subscribers;
 
-import com.ssd.mvd.gpstabletsservice.inspectors.LogInspector;
-import org.reactivestreams.Subscriber;
+import com.beeline.beelineapplication.inspectors.LogInspector;
 import org.reactivestreams.Subscription;
-
+import org.reactivestreams.Subscriber;
 import java.util.function.Consumer;
 
 public final class CustomSubscriber<T> extends LogInspector implements Subscriber<T> {
     private final Consumer< T > objectConsumer;
     private Subscription subscription;
 
-    public CustomSubscriber(final Consumer< T > objectConsumer ) {
+    public CustomSubscriber( final Consumer< T > objectConsumer ) {
         this.objectConsumer = objectConsumer;
     }
 

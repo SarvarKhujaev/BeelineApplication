@@ -1,4 +1,4 @@
-package com.beeline.beelineapplication.constants;
+package com.beeline.beelineapplication.constants.postgres;
 
 public final class PostgreTablesOperations {
     /*

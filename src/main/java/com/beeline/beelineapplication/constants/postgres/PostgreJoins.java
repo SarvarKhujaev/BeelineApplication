@@ -81,7 +81,7 @@ public final class PostgreJoins {
         INNER JOIN basket_b
             ON fruit_a = fruit_b;
      */
-    public final static String INNER_JOIN = "INNER JOIN %s ON %s = %s";
+    public final static String INNER_JOIN = "INNER JOIN";
 
     /*
     Сначала выполняется внутреннее соединение (INNER JOIN).

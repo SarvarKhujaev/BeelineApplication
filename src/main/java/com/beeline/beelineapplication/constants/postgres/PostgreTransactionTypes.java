@@ -1,5 +1,8 @@
 package com.beeline.beelineapplication.constants.postgres;
 
+/*
+хранит все типы Транзакций
+*/
 public final class PostgreTransactionTypes {
     /*
     Оператор видит только те строки, которые были зафиксированы до начала его выполнения. Этот уровень устанавливается по умолчанию.
@@ -10,7 +13,7 @@ public final class PostgreTransactionTypes {
     Все операторы текущей транзакции видят только те строки,
     которые были зафиксированы перед первым запросом на выборку или изменение данных, выполненным в этой транзакции.
      */
-    public static final String REPEATABLE_READ = "REPEATABLE READ";
+    public static final String REPEATABLE_READ = "REPEATABLE READ;";
 
     /*
     Все операторы текущей транзакции видят только те строки,

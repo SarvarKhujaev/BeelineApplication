@@ -1,9 +1,9 @@
 package com.beeline.beelineapplication.publisher;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Publisher;
 
 public final class CustomPublisher implements Publisher< ProducerRecord< String, String > > {
     private final ProducerRecord< String, String > producerRecord;
@@ -12,7 +12,7 @@ public final class CustomPublisher implements Publisher< ProducerRecord< String,
         return new CustomPublisher( topic, message );
     }
 
-    private CustomPublisher(final String topic, final String message ) {
+    private CustomPublisher( final String topic, final String message ) {
         this.producerRecord = new ProducerRecord<>( topic, message );
     }
 
@@ -26,5 +26,9 @@ public final class CustomPublisher implements Publisher< ProducerRecord< String,
             }
 
             @Override
-            public void cancel() { subscriber.onError( new Exception( "Message was not sent!!!" ) ); } } ); }
+            public void cancel() {
+                subscriber.onError( new Exception( "Message was not sent!!!" ) );
+            }
+        } );
+    }
 }

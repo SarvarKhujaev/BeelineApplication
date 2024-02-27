@@ -1,7 +1,7 @@
-package com.beeline.beelineapplication.constants;
+package com.beeline.beelineapplication.constants.postgres;
 
 public enum PostgreSqlSchema {
-    ORDERS,
+    ENTITIES,
     AUTH_SCHEMA,
     ENTITIES_ENUMS,
     ENTITIES_TYPES,

@@ -8,7 +8,7 @@ public class LogInspector extends DataValidateInspector {
 
     private final Logger LOGGER = LogManager.getLogger( "LOGGER_WITH_JSON_LAYOUT" );
 
-    private Logger getLOGGER() {
+    private Logger getLOGGER () {
         return this.LOGGER;
     }
 
