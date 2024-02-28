@@ -1,7 +1,6 @@
 package com.beeline.beelineapplication.inspectors;
 
 import com.beeline.beelineapplication.database.PostgreDataControl;
-
 import java.sql.SQLException;
 
 /*

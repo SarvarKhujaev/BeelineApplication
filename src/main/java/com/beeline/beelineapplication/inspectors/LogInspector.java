@@ -19,8 +19,4 @@ public class LogInspector extends DataValidateInspector {
     protected void logging ( final Throwable error ) {
         this.getLOGGER().error( "Error: " + error );
     }
-
-    protected void logging ( final Throwable error, final Object o ) {
-        this.getLOGGER().error("Error: {} and reason: {}: ", error.getMessage(), o );
-    }
 }

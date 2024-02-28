@@ -11,20 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 public final class Order extends LogInspector {
-    public void setTotalOrderSum( final int totalOrderSum ) {
-        this.totalOrderSum = totalOrderSum;
-    }
-
-    public void setTotalCountOfProductsInOrder( final int totalCountOfProductsInOrder ) {
-        this.totalCountOfProductsInOrder = totalCountOfProductsInOrder;
-    }
-
     public UUID getUserId() {
         return this.userId;
-    }
-
-    public void setOrderStatus( final OrderStatus orderStatus ) {
-        this.orderStatus = orderStatus;
     }
 
     public List< Product > getProductList() {
@@ -43,8 +31,20 @@ public final class Order extends LogInspector {
         this.createdDate = createdDate;
     }
 
+    public void setOrderStatus( final OrderStatus orderStatus ) {
+        this.orderStatus = orderStatus;
+    }
+
     public void setProductList ( final List< Product > productList ) {
         this.productList = productList;
+    }
+
+    public void setTotalOrderSum( final int totalOrderSum ) {
+        this.totalOrderSum = totalOrderSum;
+    }
+
+    public void setTotalCountOfProductsInOrder( final int totalCountOfProductsInOrder ) {
+        this.totalCountOfProductsInOrder = totalCountOfProductsInOrder;
     }
 
     // общая стоимость заказа

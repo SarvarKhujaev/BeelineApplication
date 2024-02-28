@@ -1,12 +1,17 @@
 package com.beeline.beelineapplication.entities;
 
+import com.beeline.beelineapplication.inspectors.LogInspector;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
 import java.util.Date;
 import java.util.UUID;
 
-public class User {
+public class User extends LogInspector {
+    public UUID getId() {
+        return this.id;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -19,40 +24,36 @@ public class User {
         return this.surname;
     }
 
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public UUID getId() {
-        return this.id;
-    }
-
     public Date getCreatedDate() {
         return this.createdDate;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 
     public void setId( final UUID id ) {
         this.id = id;
     }
 
+    public void setName ( final String name ) {
+        this.name = name;
+    }
+
+    public void setEmail ( final String email ) {
+        this.email = email;
+    }
+
+    public void setSurname ( final String surname ) {
+        this.surname = surname;
+    }
+
     public void setCreatedDate( final Date createdDate ) {
         this.createdDate = createdDate;
+    }
+
+    public void setPhoneNumber ( final String phoneNumber ) {
+        this.phoneNumber = phoneNumber;
     }
 
     private String name;
@@ -71,7 +72,7 @@ public class User {
         return new User( resultSet );
     }
 
-    protected User (
+    private User (
             final ResultSet resultSet
     ) {
         try {
@@ -82,7 +83,9 @@ public class User {
             this.setEmail( resultSet.getString( "email" ) );
             this.setSurname( resultSet.getString( "surname" ) );
             this.setPhoneNumber( resultSet.getString( "phoneNumber" ) );
-        } catch ( final SQLException e ) {}
+        } catch ( final SQLException exception ) {
+            super.logging( exception );
+        }
     }
 
     public User () {}

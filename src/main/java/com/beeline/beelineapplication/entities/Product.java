@@ -10,28 +10,12 @@ import java.util.Date;
 import java.util.UUID;
 
 public final class Product extends LogInspector {
+    public UUID getId() {
+        return this.id;
+    }
+
     public long getPrice() {
         return this.price;
-    }
-
-    public void setPrice ( final long price ) {
-        this.price = price;
-    }
-
-    public int getTotalCount() {
-        return this.totalCount;
-    }
-
-    public void setTotalCount ( final int totalCount ) {
-        this.totalCount = totalCount;
-    }
-
-    public int getProductWasSoldCount() {
-        return this.productWasSoldCount;
-    }
-
-    public void setProductWasSoldCount ( final int productWasSoldCount ) {
-        this.productWasSoldCount = productWasSoldCount;
     }
 
     public String getDescription() {
@@ -42,16 +26,40 @@ public final class Product extends LogInspector {
         return this.productName;
     }
 
-    public UUID getId() {
-        return this.id;
-    }
-
-    public Date getCreatedDate() {
-        return this.createdDate;
-    }
-
     public Categories getCategory() {
         return this.category;
+    }
+
+    public void setId ( final UUID id ) {
+        this.id = id;
+    }
+
+    public void setPrice ( final long price ) {
+        this.price = price;
+    }
+
+    public void setTotalCount ( final int totalCount ) {
+        this.totalCount = totalCount;
+    }
+
+    public void setCreatedDate ( final Date createdDate ) {
+        this.createdDate = createdDate;
+    }
+
+    public void setCategory ( final Categories category ) {
+        this.category = category;
+    }
+
+    public void setDescription ( final String description ) {
+        this.description = description;
+    }
+
+    public void setProductName ( final String productName ) {
+        this.productName = productName;
+    }
+
+    public void setProductWasSoldCount ( final int productWasSoldCount ) {
+        this.productWasSoldCount = productWasSoldCount;
     }
 
     private long price;
@@ -61,26 +69,6 @@ public final class Product extends LogInspector {
 
     // количество проданных товаров
     private int productWasSoldCount;
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setCategory(Categories category) {
-        this.category = category;
-    }
-
-    public void setId ( final UUID id ) {
-        this.id = id;
-    }
-
-    public void setCreatedDate ( final Date createdDate ) {
-        this.createdDate = createdDate;
-    }
 
     private String description; // описание товара
     private String productName; // название товара
@@ -103,6 +91,10 @@ public final class Product extends LogInspector {
     ) {
         try {
             this.setId( resultSet.getObject( "id", UUID.class ) );
+
+            this.setPrice( resultSet.getLong( "price" ) );
+            this.setTotalCount( resultSet.getInt( "totalCount" ) );
+            this.setProductWasSoldCount( resultSet.getInt( "productWasSoldCount" ) );
 
             this.setProductName( resultSet.getString( "productName" ) );
             this.setDescription( resultSet.getString( "description" ) );

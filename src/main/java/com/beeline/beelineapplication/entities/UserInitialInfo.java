@@ -9,16 +9,6 @@ public final class UserInitialInfo extends User {
         return this.password;
     }
 
-    public void setLogin( final String login ) {
-        this.login = login;
-    }
-
-    public void setPassword( final String password ) {
-        this.password = password;
-    }
-
     private String login;
     private String password;
-
-    public UserInitialInfo () {}
 }
