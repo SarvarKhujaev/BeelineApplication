@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ErrorController extends ResponseController {
     protected ErrorController () {}
 
-    protected <T> void analyzeError (
+    protected void analyzeError (
             final SQLException exception
     ) {
         super.logging( exception );

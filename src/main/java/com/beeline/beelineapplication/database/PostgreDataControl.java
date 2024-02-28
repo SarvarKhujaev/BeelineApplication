@@ -1,8 +1,9 @@
 package com.beeline.beelineapplication.database;
 
 import java.sql.*;
-import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.List;
 import java.text.MessageFormat;
 
 import java.util.function.Supplier;
@@ -272,6 +273,50 @@ public final class PostgreDataControl extends ErrorController {
                             PostgreCommands.SELECT,
                             schema,
                             table
+                    )
+            );
+
+            while ( resultSet.next() ) {
+                list.add( function.apply( resultSet ) );
+            }
+
+            return list;
+        } catch ( final SQLException exception ) {
+            super.logging( exception );
+            return list;
+        }
+    }
+
+    public <T> List<T> getAllEntities (
+            final PostgreSqlSchema schema,
+            final PostgreSqlTables table,
+            final Map< String, Object > params,
+            final Function< ResultSet, T > function
+    ) {
+        final List< T > list = super.newList();
+
+        try ( final Statement statement = this.getConnection().createStatement() ) {
+            final StringBuilder stringBuilder = super.newStringBuilder( "" );
+
+            super.analyze(
+                    params,
+                    ( key, value ) -> stringBuilder
+                            .append( key )
+                            .append( " = " )
+                            .append( ( value instanceof String || value instanceof UUID )
+                                    ? super.joinWithAstrix( value ) : value )
+                            .append( " AND " )
+            );
+
+            final ResultSet resultSet = statement.executeQuery(
+                    MessageFormat.format(
+                            """
+                             {0} {1}.{2} WHERE {3};
+                             """,
+                            PostgreCommands.SELECT,
+                            schema,
+                            table,
+                            stringBuilder.toString()
                     )
             );
 

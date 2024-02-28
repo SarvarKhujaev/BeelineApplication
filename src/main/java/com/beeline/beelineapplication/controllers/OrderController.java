@@ -2,6 +2,7 @@ package com.beeline.beelineapplication.controllers;
 
 import com.beeline.beelineapplication.constants.postgres.PostgreSqlSchema;
 import com.beeline.beelineapplication.constants.postgres.PostgreSqlTables;
+import com.beeline.beelineapplication.inspectors.ResponseController;
 import com.beeline.beelineapplication.database.PostgreDataControl;
 import com.beeline.beelineapplication.entities.Order;
 
@@ -10,11 +11,12 @@ import reactor.core.publisher.Mono;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
 @RequestMapping( value = "/beeline-serv/api/v1/order" )
-public final class OrderController {
+public final class OrderController extends ResponseController {
     @PostMapping ( value = "/" )
     public Mono< Response > createOrder (
             @RequestBody final Order order
@@ -33,5 +35,23 @@ public final class OrderController {
                                 Order::generate
                         )
         );
+    }
+
+    @GetMapping ( value = "/filter" )
+    public Mono< List< Order > > getFilteredUsers (
+            @RequestParam final Map< String, Object > params
+    ) {
+        return super.isCollectionNotEmpty( params )
+                ? Mono.just(
+                        PostgreDataControl
+                                .getInstance()
+                                .getAllEntities(
+                                        PostgreSqlSchema.ENTITIES,
+                                        PostgreSqlTables.USERS,
+                                        params,
+                                        Order::generate
+                                )
+                )
+                : Mono.just( super.emptyList() );
     }
 }

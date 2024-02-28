@@ -3,7 +3,7 @@ package com.beeline.beelineapplication.inspectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LogInspector extends DataValidateInspector {
+public class LogInspector extends TimeInspector {
     protected LogInspector () {}
 
     private final Logger LOGGER = LogManager.getLogger( "LOGGER_WITH_JSON_LAYOUT" );

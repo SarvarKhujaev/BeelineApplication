@@ -6,16 +6,18 @@ import com.beeline.beelineapplication.database.PostgreDataControl;
 import com.beeline.beelineapplication.entities.UserInitialInfo;
 import com.beeline.beelineapplication.entities.User;
 
+import com.beeline.beelineapplication.inspectors.ResponseController;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
 @RequestMapping( value = "/beeline-serv/api/v1/user" )
-public final class UserController {
+public final class UserController extends ResponseController {
     @PostMapping ( value = "/" )
     public Mono< Response > createUser (
             @RequestBody final UserInitialInfo userInitialInfo
@@ -34,5 +36,23 @@ public final class UserController {
                                 User::generate
                         )
         );
+    }
+
+    @GetMapping ( value = "/filter" )
+    public Mono< List< User > > getFilteredUsers (
+            @RequestParam final Map< String, Object > params
+    ) {
+        return super.isCollectionNotEmpty( params )
+                ? Mono.just(
+                        PostgreDataControl
+                            .getInstance()
+                            .getAllEntities(
+                                    PostgreSqlSchema.ENTITIES,
+                                    PostgreSqlTables.USERS,
+                                    params,
+                                    User::generate
+                            )
+                )
+                : Mono.just( super.emptyList() );
     }
 }

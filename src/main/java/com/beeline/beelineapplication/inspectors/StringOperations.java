@@ -5,9 +5,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Date;
-import java.util.UUID;
 
 public class StringOperations extends CollectionsInspector {
+    protected StringOperations () {}
+
     private final SecureRandom secureRandom = new SecureRandom();
     private final Base64.Encoder encoder = Base64.getUrlEncoder();
 
@@ -19,11 +20,7 @@ public class StringOperations extends CollectionsInspector {
     принимает параметр для Cassandra, который является типом TIMESTAMP,
     и добавляет в начало и конец апострафы
     */
-    protected String joinWithAstrix ( final String value ) {
-        return "'" + value + "'";
-    }
-
-    protected String joinWithAstrix ( final Enum value ) {
+    protected String joinWithAstrix ( final Object value ) {
         return "'" + value + "'";
     }
 

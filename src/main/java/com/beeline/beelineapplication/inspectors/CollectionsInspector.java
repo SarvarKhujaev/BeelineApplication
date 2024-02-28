@@ -4,7 +4,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.*;
 
-public class CollectionsInspector {
+public class CollectionsInspector extends DataValidateInspector {
     protected CollectionsInspector () {}
 
     protected <T> List<T> emptyList () {
@@ -28,6 +28,10 @@ public class CollectionsInspector {
     }
 
     protected <T> boolean isCollectionNotEmpty ( final Collection<T> collection ) {
-        return collection != null && !collection.isEmpty();
+        return super.objectIsNotNull( collection ) && !collection.isEmpty();
+    }
+
+    protected <T, V> boolean isCollectionNotEmpty ( final Map<T, V> collection ) {
+        return super.objectIsNotNull( collection ) && !collection.isEmpty();
     }
 }
