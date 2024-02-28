@@ -11,11 +11,9 @@ import java.util.function.Function;
 import javax.ws.rs.core.Response;
 import reactor.core.publisher.Mono;
 
-import com.beeline.beelineapplication.entities.Order;
-import com.beeline.beelineapplication.entities.Product;
+import com.beeline.beelineapplication.entities.*;
 import com.beeline.beelineapplication.BeelineApplication;
 import com.beeline.beelineapplication.constants.postgres.*;
-import com.beeline.beelineapplication.entities.UserInitialInfo;
 import com.beeline.beelineapplication.inspectors.ErrorController;
 
 public final class PostgreDataControl extends ErrorController {
